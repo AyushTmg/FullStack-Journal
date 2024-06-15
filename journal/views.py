@@ -1,9 +1,9 @@
 from .models import Journal,JournalImage
 from utils.response.response import CustomResponse as cr 
-from .serailizers import (
-    JournalSerailizer,
-    JournalImageSerailizer,
-    UpdateJournalSerailizer
+from .serializers import (
+    JournalSerializer,
+    JournalImageSerializer,
+    UpdateJournalSerializer
 )
 
 
@@ -37,8 +37,8 @@ class JournalViewSet(ModelViewSet):
 
     def get_serializer_class(self):
         if self.request.method in ['PUT','PATCH']:
-            return UpdateJournalSerailizer
-        return JournalSerailizer
+            return UpdateJournalSerializer
+        return JournalSerializer
 
 
     def get_serializer_context(self):
@@ -109,7 +109,7 @@ class JournalViewSet(ModelViewSet):
 
 # ! ViewSet For Journal Images
 class JournalImageViewSet(ModelViewSet):
-    serializer_class=JournalImageSerailizer
+    serializer_class=JournalImageSerializer
     permission_classes=[IsAuthenticated]
     http_method_names=['get','head','options']
 

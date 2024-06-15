@@ -14,8 +14,8 @@ from django.utils.http import urlsafe_base64_decode,urlsafe_base64_encode
 
 
 
-# ! User Registration Serailizer 
-class UserRegistrationSerailizer(serializers.ModelSerializer):
+# ! User Registration Serializer 
+class UserRegistrationSerializer(serializers.ModelSerializer):
     password=serializers.CharField(
         write_only=True,
         style={'input_type':'password'},
@@ -78,8 +78,8 @@ class UserRegistrationSerailizer(serializers.ModelSerializer):
 
 
 
-# !  User Login Serailizer 
-class UserLoginSerailizer(serializers.Serializer):
+# !  User Login Serializer 
+class UserLoginSerializer(serializers.Serializer):
     email=serializers.EmailField()
     password=serializers.CharField(
         write_only=True,
@@ -91,7 +91,7 @@ class UserLoginSerailizer(serializers.Serializer):
 
 
 # ! User ChangePassword  
-class UserChangePasswordSerailizer(serializers.Serializer):
+class UserChangePasswordSerializer(serializers.Serializer):
     old_password=serializers.CharField(
         write_only=True,
         style={'input_type':'password'},
@@ -151,8 +151,8 @@ class UserChangePasswordSerailizer(serializers.Serializer):
     
 
 
-# ! Send Password Reset email serailizer
-class SendPasswordResetEmailSerailizer(serializers.Serializer):
+# ! Send Password Reset email serializer
+class SendPasswordResetEmailSerializer(serializers.Serializer):
     email=serializers.EmailField()
 
     def validate_email(self,value):
@@ -190,7 +190,7 @@ class SendPasswordResetEmailSerailizer(serializers.Serializer):
 
 
 # ! User Reset Password  
-class UserPasswordResetSerailizer(serializers.Serializer):
+class UserPasswordResetSerializer(serializers.Serializer):
     password=serializers.CharField(
         write_only=True,
         style={'input_type':'password'},

@@ -2,11 +2,11 @@ from .models import User
 from .tokens import get_tokens_for_user
 from utils.response.response import CustomResponse as cr 
 from .serializers import (
-    UserRegistrationSerailizer,
-    UserLoginSerailizer,
-    UserChangePasswordSerailizer,
-    UserPasswordResetSerailizer,
-    SendPasswordResetEmailSerailizer
+    UserRegistrationSerializer,
+    UserLoginSerializer,
+    UserChangePasswordSerializer,
+    UserPasswordResetSerializer,
+    SendPasswordResetEmailSerializer
 )
 
 
@@ -28,7 +28,7 @@ from django.contrib.auth import authenticate
 
 # ! User Registration View
 class UserRegistrationView(APIView):
-    serailizer_class=UserRegistrationSerailizer
+    serializer_class=UserRegistrationSerializer
     permission_classes=[AllowAny]
 
 
@@ -36,9 +36,9 @@ class UserRegistrationView(APIView):
         """
         Registering User Account
         """
-        serailizer=self.serailizer_class(data=request.data)
-        serailizer.is_valid(raise_exception=True)
-        serailizer.save()
+        serializer=self.serializer_class(data=request.data)
+        serializer.is_valid(raise_exception=True)
+        serializer.save()
 
         return cr.success(
             message="Your account has been successfully registered",
@@ -50,7 +50,7 @@ class UserRegistrationView(APIView):
 
 # ! User Login View
 class UserLoginView(APIView):
-    serializer_class=UserLoginSerailizer
+    serializer_class=UserLoginSerializer
     permission_classes=[AllowAny]
 
 
@@ -87,7 +87,7 @@ class UserLoginView(APIView):
 
 # ! User Change Password View
 class UserChangePasswordView(APIView):
-        serializer_class=UserChangePasswordSerailizer
+        serializer_class=UserChangePasswordSerializer
         permission_classes=[IsAuthenticated]
 
 
@@ -96,11 +96,11 @@ class UserChangePasswordView(APIView):
             Changing Authenticated User Password 
             """
             user=request.user
-            serailizer=self.serializer_class(
+            serializer=self.serializer_class(
                 data=request.data,
                 context={'user':user}
             )
-            serailizer.is_valid(raise_exception=True)
+            serializer.is_valid(raise_exception=True)
 
             return cr.success(
                 message="Your password has been successfully changed"
@@ -111,15 +111,15 @@ class UserChangePasswordView(APIView):
 
 # !Send Password Reset Email View
 class SendPasswordResetEamilView(APIView):
-    serailizer_class=SendPasswordResetEmailSerailizer
+    serializer_class=SendPasswordResetEmailSerializer
 
 
     def post(self,request):
         """
         Method for sending email for resetting users password
         """
-        serailizer=self.serailizer_class(data=request.data)
-        serailizer.is_valid(raise_exception=True)
+        serializer=self.serializer_class(data=request.data)
+        serializer.is_valid(raise_exception=True)
 
         return cr.success(
             message="Link for resetting your password has been sent to your email"
@@ -130,7 +130,7 @@ class SendPasswordResetEamilView(APIView):
 
 # ! User Password Reset View 
 class UserPasswordResetView(APIView):
-    serializer_class=UserPasswordResetSerailizer
+    serializer_class=UserPasswordResetSerializer
     permission_classes=[AllowAny]
 
 
@@ -138,11 +138,11 @@ class UserPasswordResetView(APIView):
         """
         Method For Resetting User Password
         """
-        serailizer=self.serializer_class(
+        serializer=self.serializer_class(
             data=request.data,
             context={'uid':uid,'token':token}
         )
-        serailizer.is_valid(raise_exception=True)
+        serializer.is_valid(raise_exception=True)
 
         return cr.success(
             message="Your password has been successfully changed"

@@ -8,8 +8,8 @@ from datetime import date
 
 
 
-# ! Serailizer For Journal Images 
-class JournalImageSerailizer(serializers.ModelSerializer):
+# ! Serializer For Journal Images 
+class JournalImageSerializer(serializers.ModelSerializer):
     class Meta:
         model=JournalImage 
         fields=[
@@ -20,9 +20,9 @@ class JournalImageSerailizer(serializers.ModelSerializer):
 
 
 
-# ! Serailizer For Journal  
-class JournalSerailizer(serializers.ModelSerializer):
-    images=JournalImageSerailizer(many=True,read_only=True)
+# ! Serializer For Journal  
+class JournalSerializer(serializers.ModelSerializer):
+    images=JournalImageSerializer(many=True,read_only=True)
     user=serializers.StringRelatedField()
     upload_images=serializers.ListField(
         child=serializers.ImageField(allow_empty_file=False, use_url=False),
@@ -93,7 +93,7 @@ class JournalSerailizer(serializers.ModelSerializer):
 
 
 # ! Serializer For Updating Journal Object
-class UpdateJournalSerailizer(serializers.ModelSerializer):
+class UpdateJournalSerializer(serializers.ModelSerializer):
     class Meta:
         model=Journal
         fields=[
