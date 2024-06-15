@@ -4,6 +4,7 @@ from utils.exception.exception import CustomException as ce
 
 from rest_framework import serializers
 from django.db import transaction
+from datetime import date
 
 
 
@@ -42,17 +43,16 @@ class JournalSerailizer(serializers.ModelSerializer):
 
 
     def validate(self, attrs):
-        date=attrs.get('date')
-        user_id=self.context['user_id']
+        user_id = self.context['user_id']
 
-        journal=Journal.objects.filter(
-            date=date,
-            user_id=user_id
+        journal = Journal.objects.filter(
+            date = date.today(),
+            user_id = user_id
         )
 
         if journal.exists():
-            return ce(
-                message="You cannot create multiple journal for the same date"
+            raise ce(
+                message = "You cannot create multiple journals for the same date"
             )
 
         return attrs
@@ -66,9 +66,8 @@ class JournalSerailizer(serializers.ModelSerializer):
         try:
             with transaction.atomic():  
                 uploaded_images=validated_data.pop('upload_images')
-
                 user_id=self.context['user_id']
-                
+            
                 journal=Journal.objects.create(
                     user_id=user_id,
                     **validated_data
@@ -79,32 +78,26 @@ class JournalSerailizer(serializers.ModelSerializer):
                     for image in uploaded_images
                 ]
 
+
                 # ! Creating Journal Images Bulkly
                 JournalImage.objects.bulk_create(list_of_journal_images)
 
             return journal
+        
         except Exception as e :
-            return ce(
+            raise ce(
                 message=f"Some error occured while creating journal {e}"
             )
         
 
-    def update(self, instance, validated_data):
-        date=validated_data['date']
-        user_id=self.context['user_id']
-
-        journal=Journal.objects.filter(
-            date=date,
-            user_id=user_id
-        )
-
-        if journal.exists():
-            return ce(
-                message="Invalid Request You cannot have multiple journal for the same day"
-            )
-        
-        return super().update(instance, validated_data)
 
 
-
+# ! Serializer For Updating Journal Object
+class UpdateJournalSerailizer(serializers.ModelSerializer):
+    class Meta:
+        model=Journal
+        fields=[
+            'title',
+            'content',
+        ]
 

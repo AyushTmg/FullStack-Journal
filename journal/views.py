@@ -1,6 +1,10 @@
 from .models import Journal,JournalImage
 from utils.response.response import CustomResponse as cr 
-from .serailizers import JournalSerailizer,JournalImageSerailizer
+from .serailizers import (
+    JournalSerailizer,
+    JournalImageSerailizer,
+    UpdateJournalSerailizer
+)
 
 
 
@@ -15,7 +19,6 @@ from rest_framework.status import (
 
 # ! ViewSet For Journal
 class JournalViewSet(ModelViewSet):
-    serializer_class=JournalSerailizer
     permission_classes=[IsAuthenticated]
 
     
@@ -30,6 +33,12 @@ class JournalViewSet(ModelViewSet):
             )
         
         return journal
+    
+
+    def get_serializer_class(self):
+        if self.request.method in ['PUT','PATCH']:
+            return UpdateJournalSerailizer
+        return JournalSerailizer
 
 
     def get_serializer_context(self):
@@ -46,7 +55,6 @@ class JournalViewSet(ModelViewSet):
 
         return cr.success(
             message="Successfully Created",
-            data=serializer.data,
             status=HTTP_201_CREATED
         )
 
@@ -94,7 +102,6 @@ class JournalViewSet(ModelViewSet):
 
         return cr.success(
             message="Successfully Updated",
-            data=serializer.data
         )
     
 
