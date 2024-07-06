@@ -8,10 +8,13 @@ click-didyoumean==0.3.1
 click-plugins==1.1.1
 click-repl==0.3.0
 Django==5.0.3
+django-cors-headers==4.4.0
 django-debug-toolbar==4.3.0
 djangorestframework==3.15.1
 djangorestframework-simplejwt==5.3.1
+drf-nested-routers==0.94.1
 kombu==5.3.6
+pillow==10.4.0
 prompt-toolkit==3.0.43
 PyJWT==2.8.0
 python-dateutil==2.9.0.post0
