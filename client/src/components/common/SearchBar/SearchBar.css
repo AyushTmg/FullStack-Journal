@@ -1,0 +1,13 @@
+.searchBar-wrapper {
+  position: relative;
+}
+.searchBar-wrapper {
+  border: 1px solid #1ed760;
+
+  border-radius: 10px;
+  padding: 10px;
+}
+.searchBar-wrapper > input {
+  border: none;
+  width: 25rem;
+}

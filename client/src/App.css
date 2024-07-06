@@ -1,0 +1,9 @@
+* {
+  padding: 0;
+  margin: 0;
+}
+.error {
+  text-align: left !important;
+  color: red;
+  font-size: 0.75rem;
+}

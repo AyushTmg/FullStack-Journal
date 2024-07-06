@@ -1,0 +1,20 @@
+.submitButton-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.submitButton-container > input {
+  border-radius: 120px;
+  padding: 20px;
+  border: 1px solid #c1bebe;
+  outline: none;
+  color: white;
+  font-weight: 800;
+  cursor: pointer;
+  background-color: rgb(35, 215, 96);
+  text-align: center;
+}
+
+.submitButton-container input:hover {
+  border: 1px solid rgb(76, 216, 96);
+}

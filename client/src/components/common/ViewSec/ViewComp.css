@@ -1,0 +1,7 @@
+.view-wrapper {
+  display: flex;
+}
+
+.view-wrapper > p {
+  color: #1ed760;
+}

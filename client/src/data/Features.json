@@ -1,0 +1,14 @@
+{
+  "features": [
+    {
+      "name": "View journal",
+      "icon": "view",
+      "redirect": "view-journal"
+    },
+    {
+      "name": "Create journal",
+      "icon": "createIcon",
+      "redirect": "create-journal"
+    }
+  ]
+}

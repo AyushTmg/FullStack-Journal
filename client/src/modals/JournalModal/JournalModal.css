@@ -1,0 +1,59 @@
+.journal-modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: #2a2a2a90 0% 0% no-repeat padding-box;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  .journal-modal-container {
+    background-color: #ffffff;
+    width: 90vw;
+    height: 90vh;
+    overflow: scroll;
+
+    header {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 0.5rem;
+      width: 100%;
+
+      .close-button,
+      .date {
+        width: inherit;
+        display: flex;
+        justify-content: flex-end;
+
+        img:hover {
+          cursor: pointer;
+        }
+      }
+
+      input {
+        border: none;
+        font-size: 1.5rem;
+
+        &:focus {
+          outline: none;
+        }
+      }
+    }
+    main {
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+
+      textarea {
+        width: 80%;
+        border: none;
+        outline: none;
+        height: 60vh;
+      }
+    }
+  }
+}

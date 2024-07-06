@@ -1,0 +1,19 @@
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+.journal-wrapper {
+  max-height: 100vh;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.journal-wrapper .journal-container {
+  display: flex;
+  justify-content: center;
+  align-content: center;
+  gap: 1rem;
+}
