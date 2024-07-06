@@ -20,6 +20,7 @@ from rest_framework.status import (
 # ! ViewSet For Journal
 class JournalViewSet(ModelViewSet):
     permission_classes=[IsAuthenticated]
+    http_method_names=['get','head','options','post','patch','delete']
 
     
     def get_queryset(self): 
