@@ -8,6 +8,7 @@ from .serializers import (
 
 
 
+
 from rest_framework.viewsets import ModelViewSet
 from rest_framework.permissions import IsAuthenticated
 from rest_framework.status import (
@@ -49,16 +50,17 @@ class JournalViewSet(ModelViewSet):
 
 
     def create(self, request, *args, **kwargs):
-        serializer = self.get_serializer(data=request.data)
-        serializer.is_valid(raise_exception=True)
-        self.perform_create(serializer)
-        headers = self.get_success_headers(serializer.data)
+        
+            serializer = self.get_serializer(data=request.data)
+            serializer.is_valid(raise_exception=True)
+            self.perform_create(serializer)
+            headers = self.get_success_headers(serializer.data)
 
-        return cr.success(
-            message="Successfully Created",
-            status=HTTP_201_CREATED
-        )
-
+            return cr.success(
+                message="Successfully Created",
+                status=HTTP_201_CREATED
+            )
+        
     
     def list(self, request, *args, **kwargs):
         queryset = self.filter_queryset(self.get_queryset())

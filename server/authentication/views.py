@@ -29,7 +29,8 @@ from django.contrib.auth import authenticate
 # ! User Registration View
 class UserRegistrationView(APIView):
     serializer_class=UserRegistrationSerializer
-    permission_classes=[AllowAny]
+    # permission_classes=[AllowAny]
+    authentication_class = []
 
 
     def post(self,request):

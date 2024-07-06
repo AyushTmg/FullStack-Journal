@@ -5,6 +5,8 @@ class CustomRefreshToken(RefreshToken):
     def for_user(cls, user):
         token = super().for_user(user)
 
+        token['first_name'] = user.first_name
+        token['last_name'] = user.last_name
         token['username'] = user.username
         token['email'] = user.email
 
